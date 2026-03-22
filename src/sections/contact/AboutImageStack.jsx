@@ -3,10 +3,10 @@ import gsap from "gsap"
 import AboutImageCard from "./AboutImageCard"
 
 const initialImages = [
-  "/projects/mypic.jpeg",
-  "/projects/Hack.avif",
-  "/projects/code_lap1.jpg",
-  "/projects/code_console.png",
+  "/projects/letsc.png",
+  "/projects/mail.png",
+  "/projects/connect.png",
+  "/projects/team.png",
 ]
 
 const AboutImageStack = () => {

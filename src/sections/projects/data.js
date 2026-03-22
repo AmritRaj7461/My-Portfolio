@@ -3,7 +3,7 @@ const projects = [
     id: 1,
     title: "Employee Leave Management System",
     category: "Management System",
-    image: "/leave-management-logo.png",
+    image: "projects/elms.png",
     description:
       "A centralized system to automate leave requests, approvals, and employee records using efficient data structures.",
     tech: [
@@ -14,18 +14,18 @@ const projects = [
       "Lucide React",
       "Framer Motion",
     ],
-    links: { live: "#", github: "#" },
+    links: { live: "https://employee-leave-management-system-kohl.vercel.app/", github: "https://github.com/AmritRaj7461/employee-leave-management-system" },
     color: "#6366F1", // Indigo
   },
   {
     id: 2,
     title: "Finance Tracker System",
     category: "FinTech",
-    image: "/finance-tracker-logo.png",
+    image: "projects/fms.png",
     description:
       "A personal finance tool to track income, expenses, and budget goals with categorized data visualization.",
     tech: ["React.js", "TailwindCSS", "Framer Motion", "Lucide React"],
-    links: { live: "#", github: "#" },
+    links: { live: "https://personal-finance-tracker-nine-kappa.vercel.app/", github: "https://github.com/AmritRaj7461/personal-finance-tracker" },
     color: "#F59E0B", // Amber
   },
   {
@@ -33,11 +33,11 @@ const projects = [
     title: "XampXpress",
     category: "Examination Platform",
     image:
-      "https://img.freepik.com/premium-vector/d-vector-conceptual-illustration-online-exam-digital-knowledge-testing_109064-3267.jpg?semt=ais_hybrid&w=740&q=80",
+      "projects/xampxpress.png",
     description:
       "A highly scalable online examination platform with real-time proctoring and analytics.",
     tech: ["HTML", "Tailwind", "JavaScript", "PHP"],
-    links: { live: "#", github: "#" },
+    links: { live: "#", github: "https://github.com/AmritRaj7461/Examination-Platform" },
     color: "#8B5CF6", // Violet
   },
   {
@@ -48,7 +48,7 @@ const projects = [
     description:
       "An AI-powered productivity tool that optimizes study schedules using personalized time-blocking and progress tracking to improve learning efficiency.",
     tech: ["HTML5", "TailwindCSS", "JavaScript", "Framer Motion", "Chart.js"],
-    links: { live: "#", github: "#" },
+    links: { live: "https://smart-study-planner-woad.vercel.app/", github: "https://github.com/AmritRaj7461/Smart-Study-Planner" },
     color: "#EC4899", // Pink
   },
   {
@@ -59,17 +59,17 @@ const projects = [
     description:
       "An innovative platform dedicated to sustainable agriculture, integrating smart-farming concepts with real-time data visualization for eco-friendly crop management.",
     tech: ["React.js", "Node.js", "Expressjs", "MongoDB"],
-    links: { live: "#", github: "#" },
+    links: { live: "https://agro-farm-alpha.vercel.app/", github: "https://github.com/AmritRaj7461/AgroFarm-" },
     color: "#3B82F6", // Blue
   },
   {
     id: 6,
     title: "Humble Bot",
     category: "AI",
-    image: "/projects/humblebot.jpg",
+    image: "/projects/bot.png",
     description: "An AI assistant that works upon the Gemini API to provide intelligent responses and context-aware interactions.",
-    tech: ["React.js", "TailwindCSS", "Node.js", "Gemini API"],
-    links: { live: "#", github: "#" },
+    tech: ["Jetpack Compose", "Kotlin", "Android Studio", "Gemini API", "XML"],
+    links: { live: "#", github: "https://github.com/AmritRaj7461/HumbleBot" },
     color: "#10B981", // Emerald
   },
 ];
