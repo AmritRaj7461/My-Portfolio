@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react"
-// Updated import to the modern browser SDK
+
 import emailjs from "@emailjs/browser"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
