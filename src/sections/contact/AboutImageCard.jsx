@@ -1,6 +1,6 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react"
-import gsap from "gsap"
-import Draggable from "gsap/draggable"
+import { gsap } from "gsap";
+import { Draggable } from "gsap/all";
 
 // Removed InertiaPlugin import and registration
 gsap.registerPlugin(Draggable)
