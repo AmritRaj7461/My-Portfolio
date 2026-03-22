@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react"
 const CometCanvas = () => {
   const canvasRef = useRef(null)
   const mouse = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
-  const pos = useRef({ ...mouse.current })
+  const pos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
   const trail = useRef([])
   const particles = useRef([])
 

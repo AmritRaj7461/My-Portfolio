@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { FaReact, FaLaptopCode, FaRocket } from "react-icons/fa6"
-import AvatarModel from "./AvatarModel" // Import the new 3D component
+// import AvatarModel from "./AvatarModel" // Missing component
 
 const TechAvatar = () => {
   const containerRef = useRef(null)
@@ -57,7 +57,7 @@ const TechAvatar = () => {
         {/* 2. THE 3D AVATAR CANVAS */}
         {/* We increase z-index to 10 so it sits above the glow but below icons */}
         <div className="relative z-10 w-[400px] h-[500px]"> 
-             <AvatarModel />
+             {/* <AvatarModel /> */}
         </div>
 
         {/* 3. ORBITING TECH: React Atom (Top Right) */}

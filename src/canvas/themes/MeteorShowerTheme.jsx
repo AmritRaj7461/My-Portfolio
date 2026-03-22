@@ -2,19 +2,15 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const MeteorShowerTheme = () => {
-  const [meteors, setMeteors] = useState([]);
-
-  useEffect(() => {
-    // Generate fewer meteors with significantly slower speed and larger delay distribution
-    const newMeteors = Array.from({ length: 8 }).map((_, i) => ({
+  const [meteors, setMeteors] = useState(() => {
+    return Array.from({ length: 8 }).map((_, i) => ({
       id: i,
       left: Math.random() * 200 - 50 + "%", 
-      delay: Math.random() * 15, // Up to 15sec delay before loop
-      duration: Math.random() * 4 + 5, // 5s to 9s travel time (Much slower!)
+      delay: Math.random() * 15,
+      duration: Math.random() * 4 + 5,
       tailLength: Math.random() * 100 + 100 
     }));
-    setMeteors(newMeteors);
-  }, []);
+  });
 
   return (
     <div className="absolute inset-0 bg-slate-950 overflow-hidden z-[-1] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">

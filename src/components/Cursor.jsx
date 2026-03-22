@@ -6,7 +6,7 @@ const Cursor = () => {
   
   // Physics State
   const pos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
-  const mouse = useRef({ ...pos.current })
+  const mouse = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
   
   const [state, setState] = useState("default")
   const prevState = useRef("default")
