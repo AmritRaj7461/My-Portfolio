@@ -1,10 +1,9 @@
 import { useEffect, useRef, forwardRef, useImperativeHandle } from "react"
 import gsap from "gsap"
 import Draggable from "gsap/draggable"
-import InertiaPlugin from "gsap/InertiaPlugin"
 
-// Ensure plugins are registered
-gsap.registerPlugin(Draggable, InertiaPlugin)
+// Removed InertiaPlugin import and registration
+gsap.registerPlugin(Draggable)
 
 const AboutImageCard = forwardRef(
   ({ src, index, boundsRef, onRemove }, externalRef) => {
@@ -38,17 +37,17 @@ const AboutImageCard = forwardRef(
       const draggable = Draggable.create(card, {
         type: "x,y",
         bounds,
-        inertia: true,
+        // inertia: true changed to false for free version
+        inertia: false,
         edgeResistance: 0.6,
         dragResistance: 0.015,
-        inertiaResistance: 8,
-        onDragEnd: function() {
-          const vx = InertiaPlugin.getVelocity(card, "x")
-          const vy = InertiaPlugin.getVelocity(card, "y")
-          const speed = Math.sqrt(vx * vx + vy * vy)
-          
-          // Thrown fast enough
-          if (speed > 1200) {
+        onDragEnd: function () {
+          // Logic to detect a "throw" without InertiaPlugin
+          // If the card is dragged more than 150px from center, we consider it a throw
+          const xPos = this.x;
+          const yPos = this.y;
+
+          if (Math.abs(xPos) > 150 || Math.abs(yPos) > 150) {
             // Play sound
             const audio = new Audio("/sounds/card-throw.mp3")
             audio.volume = 0.6
@@ -57,17 +56,17 @@ const AboutImageCard = forwardRef(
 
             this.disable()
 
-            // Fly out part by part outside bonds
+            // Calculate exit trajectory
+            const angle = Math.atan2(yPos, xPos)
             const distance = 1000
-            const angle = Math.atan2(vy, vx)
-            const destX = this.x + Math.cos(angle) * distance
-            const destY = this.y + Math.sin(angle) * distance
+            const destX = xPos + Math.cos(angle) * distance
+            const destY = yPos + Math.sin(angle) * distance
 
             gsap.to(card, {
               x: destX,
               y: destY,
               opacity: 0,
-              rotateZ: "+=" + (vx > 0 ? 90 : -90),
+              rotateZ: xPos > 0 ? 90 : -90,
               scale: 0.5,
               duration: 0.8,
               ease: "power2.out",
@@ -85,7 +84,8 @@ const AboutImageCard = forwardRef(
     }, [boundsRef, index, onRemove, src])
 
     const handleMove = (e) => {
-      if (draggableRef.current && (draggableRef.current.isDragging || draggableRef.current.isPressed || draggableRef.current.isThrowing)) return
+      // Removed isThrowing check as it's an Inertia property
+      if (draggableRef.current && (draggableRef.current.isDragging || draggableRef.current.isPressed)) return
       const r = ref.current.getBoundingClientRect()
       const dx = e.clientX - (r.left + r.width / 2)
       const dy = e.clientY - (r.top + r.height / 2)
@@ -102,7 +102,7 @@ const AboutImageCard = forwardRef(
     }
 
     const handleLeave = () => {
-      if (draggableRef.current && (draggableRef.current.isDragging || draggableRef.current.isPressed || draggableRef.current.isThrowing)) return
+      if (draggableRef.current && (draggableRef.current.isDragging || draggableRef.current.isPressed)) return
       gsap.to(ref.current, {
         rotateX: 0,
         rotateY: 0,
@@ -130,15 +130,14 @@ const AboutImageCard = forwardRef(
         "
       >
         <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
-           <img
-             src={src}
-             draggable={false}
-             className="w-full h-full object-cover pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-110"
-             alt="project-card"
-           />
-           {/* Inner Cyber Border */}
-           <div className="absolute inset-0 border border-white/10 rounded-[1.5rem] pointer-events-none group-hover:border-cyan-400/30 transition-colors duration-500" />
-           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-50 group-hover:opacity-10" />
+          <img
+            src={src}
+            draggable={false}
+            className="w-full h-full object-cover pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-110"
+            alt="project-card"
+          />
+          <div className="absolute inset-0 border border-white/10 rounded-[1.5rem] pointer-events-none group-hover:border-cyan-400/30 transition-colors duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none opacity-50 group-hover:opacity-10" />
         </div>
       </div>
     )
