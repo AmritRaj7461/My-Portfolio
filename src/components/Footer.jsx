@@ -9,7 +9,7 @@ const Footer = () => {
     { name: "GitHub", icon: <FaGithub />, url: "https://github.com/AmritRaj7461" },
     { name: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/in/amrit-raj-7065092a0/" },
     { name: "Twitter", icon: <FaTwitter />, url: "#" },
-    { name: "LeetCode", icon: <SiLeetcode />, url: "https://leetcode.com/u/amritraj7461" },
+    { name: "LeetCode", icon: <SiLeetcode />, url: "#" },
     { name: "Email", icon: <FaEnvelope />, url: "mailto:amritraj7461@gmail.com" },
   ];
 
@@ -18,13 +18,13 @@ const Footer = () => {
       {/* Background glow effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[60%] h-24 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-      
+
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-          
+
           {/* Brand & Description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -33,7 +33,7 @@ const Footer = () => {
             >
               Amrit Raj
             </motion.h3>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -46,7 +46,7 @@ const Footer = () => {
 
           {/* Social Links */}
           <div className="flex flex-col items-center md:items-end">
-            <motion.h4 
+            <motion.h4
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
@@ -89,7 +89,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row items-center justify-between text-xs text-slate-500">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -98,16 +98,16 @@ const Footer = () => {
           >
             © {currentYear} Amrit Raj. All rights reserved.
           </motion.p>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex items-center gap-1.5"
           >
-            Crafted with <motion.span 
-              animate={{ scale: [1, 1.2, 1] }} 
-              transition={{ repeat: Infinity, duration: 1.5 }} 
+            Crafted with <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
               className="text-fuchsia-500"
             >♥</motion.span> using <span className="text-cyan-400">React</span>, <span className="text-cyan-300">Tailwind</span> & <span className="text-fuchsia-400">Framer Motion</span>
           </motion.p>
