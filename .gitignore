@@ -46,5 +46,4 @@ Thumbs.db
 # Optional: lock files (ONLY if you don't want them tracked)
 # package-lock.json
 # yarn.lock
-# pnpm-lock.yaml
-node_modules
+
