@@ -14,15 +14,19 @@ const ProjectCard = ({ project, index, onClick }) => {
   const handleMouseMove = (e) => {
     if (!cardRef.current || !imageContainerRef.current) return
     
-    const rect = cardRef.current.getBoundingClientRect()
-    const xNorm = (e.clientX - rect.left) / rect.width * 2 - 1
-    const yNorm = (e.clientY - rect.top) / rect.height * 2 - 1
-    
-    // Spotlight variables
-    cardRef.current.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`)
-    cardRef.current.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`)
+    // Use requestAnimationFrame for smooth mouse tracking without layout thrashing
+    requestAnimationFrame(() => {
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect()
+      
+      // Spotlight variables
+      cardRef.current.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`)
+      cardRef.current.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`)
+    });
+  }
 
-    // Lightweight glow and scale effect (Optimized for performance)
+  const handleMouseEnter = () => {
+    // Lightweight glow and scale effect (Optimized for performance - moved from mouseMove)
     gsap.to(cardRef.current, {
       scale: 1.015,
       boxShadow: `0 0 40px ${project.color}40`,
@@ -31,9 +35,7 @@ const ProjectCard = ({ project, index, onClick }) => {
       ease: "power2.out",
       overwrite: "auto"
     })
-  }
 
-  const handleMouseEnter = () => {
     // Start Scanner Animation
     gsap.to(scannerRef.current, {
         y: "400%", // Move down
@@ -90,8 +92,8 @@ const ProjectCard = ({ project, index, onClick }) => {
         onMouseLeave={handleMouseLeave}
         className={`
             group relative w-full rounded-[3rem] 
-            bg-gradient-to-br from-slate-900/95 via-slate-900/70 to-slate-950/95 
-            backdrop-blur-2xl border border-white/10 
+            bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-slate-950/95 
+            border border-white/10 
             overflow-visible cursor-pointer transition-colors duration-500 
             hover:border-cyan-500/40
             h-auto lg:h-[480px] /* EXACT DESKTOP HEIGHT FOR FULL UNIFORMITY */
@@ -103,10 +105,17 @@ const ProjectCard = ({ project, index, onClick }) => {
         <div className="absolute inset-0 rounded-[3rem] overflow-hidden z-0 pointer-events-none">
             {/* Grid Pattern */}
             <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
-            {/* Spotlight Gradient */}
+            {/* Spotlight Gradient - HW Accelerated */}
             <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: `radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), ${project.color}10, transparent 40%)` }}
+                className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 will-change-transform pointer-events-none mix-blend-screen"
+                style={{ 
+                  width: '1600px', 
+                  height: '1600px', 
+                  left: '-800px', 
+                  top: '-800px',
+                  background: `radial-gradient(circle, ${project.color}15 0%, transparent 30%)`,
+                  transform: 'translate(var(--mouse-x), var(--mouse-y))'
+                }}
             />
         </div>
 
@@ -185,7 +194,7 @@ const ProjectCard = ({ project, index, onClick }) => {
                         style={{ backgroundImage: `url(${project.image})` }}
                     >
                        <div className="absolute inset-0 bg-slate-900/40 group-hover:bg-transparent transition-colors duration-500" />
-                       <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+                       <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
                     </div>
                  </div>
 

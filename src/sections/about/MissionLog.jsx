@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { FaCode, FaGraduationCap, FaBriefcase, FaRocket, FaAtom } from "react-icons/fa"
+import { SiMongodb, SiReact, SiNodedotjs, SiThreedotjs, SiTailwindcss, SiJavascript, SiGooglecloud, SiCplusplus } from "react-icons/si"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,37 +11,41 @@ const historyData = [
     year: "2021",
     title: "System Initialization",
     role: "Hello World",
-    description: "Wrote my first line of code. The journey into logic and syntax began here.",
+    description: "Wrote my first line of code. The journey into logic and syntax began here, establishing the core foundations.",
     icon: <FaCode />,
-    color: "#22d3ee" // Cyan
+    color: "#22d3ee", // Cyan
+    tech: [SiJavascript, SiCplusplus, SiTailwindcss]
   },
   {
     year: "2023",
     title: "Knowledge Upgrade",
     role: "Full Stack Development",
-    description: "Mastered the MERN stack. Built my first scalable applications and deployed to the cloud.",
+    description: "Mastered the MERN stack. Built my first scalable applications, handled complex databases, and deployed to the cloud.",
     icon: <FaGraduationCap />,
-    color: "#a855f7" // Purple
+    color: "#a855f7", // Purple
+    tech: [SiMongodb, SiReact, SiNodedotjs]
   },
   {
     year: "2024",
     title: "Professional Deployment",
     role: "Freelance & Projects",
-    description: "Started delivering professional solutions. Focused on UI/UX and performance optimization.",
+    description: "Started delivering professional client solutions. Focused strictly on premium UI/UX, robust performance, and SEO optimization.",
     icon: <FaBriefcase />,
-    color: "#facc15" // Yellow
+    color: "#facc15", // Yellow
+    tech: [SiReact, SiGooglecloud, SiTailwindcss]
   },
   {
     year: "2025",
     title: "Current Trajectory",
     role: "Next-Gen Tech",
-    description: "Diving deep into WebGL (Three.js) and AI integration to build immersive web experiences.",
+    description: "Diving deep into WebGL (Three.js), AI integration, and advanced frontend architectures to build highly immersive, interactive web experiences.",
     icon: <FaRocket />,
-    color: "#4ade80" // Green
+    color: "#4ade80", // Green
+    tech: [SiThreedotjs, SiReact, SiNodedotjs]
   },
 ]
 
-// --- SUB-COMPONENT: HACKER DECODING TEXT ---
+// --- HACKER DECODING TEXT ---
 const HackerText = ({ text, isHovered }) => {
   const [displayText, setDisplayText] = useState(text)
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*"
@@ -63,7 +68,7 @@ const HackerText = ({ text, isHovered }) => {
           .join("")
       )
       if (iterations >= text.length) clearInterval(interval)
-      iterations += 1 / 2
+      iterations += 1 / 3 // Smooth decode speed
     }, 30)
 
     return () => clearInterval(interval)
@@ -72,7 +77,7 @@ const HackerText = ({ text, isHovered }) => {
   return <span>{displayText}</span>
 }
 
-// --- SUB-COMPONENT: 3D TILT CARD ---
+// --- PREMIUM GLASSMORPHIC TILT CARD ---
 const HoloCard = ({ item, isLeft }) => {
   const cardRef = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
@@ -85,15 +90,12 @@ const HoloCard = ({ item, isLeft }) => {
     const centerX = rect.width / 2
     const centerY = rect.height / 2
     
-    const rotateX = ((y - centerY) / centerY) * -10 // Max 10deg tilt
-    const rotateY = ((x - centerX) / centerX) * 10
-
+    // Smooth, performance-friendly 3D Tilt
     gsap.to(cardRef.current, {
-      rotateX: rotateX,
-      rotateY: rotateY,
-      scale: 1.05,
-      duration: 0.1,
-      ease: "power1.out"
+      rotateX: -((y - centerY) / centerY) * 8, // Max 8 degree tilt
+      rotateY: ((x - centerX) / centerX) * 8,
+      duration: 0.5,
+      ease: "power2.out"
     })
   }
 
@@ -102,8 +104,7 @@ const HoloCard = ({ item, isLeft }) => {
     gsap.to(cardRef.current, {
       rotateX: 0,
       rotateY: 0,
-      scale: 1,
-      duration: 0.5,
+      duration: 0.8,
       ease: "elastic.out(1, 0.5)"
     })
   }
@@ -117,51 +118,59 @@ const HoloCard = ({ item, isLeft }) => {
     >
       <div 
         ref={cardRef}
-        className={`
-          relative p-8 rounded-xl bg-slate-900/80 backdrop-blur-xl border border-white/10 
-          transform-style-3d transition-shadow duration-500
-          hover:shadow-[0_0_50px_rgba(34,211,238,0.15)] hover:border-cyan-400/50
-        `}
+        className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-slate-900/95 to-slate-950/95 border border-white/5 transform-style-3d transition-all duration-500 overflow-hidden hover:border-white/20 will-change-transform shadow-[0_0_30px_rgba(0,0,0,0.5)]"
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* HOLOGRAPHIC SHINE LAYER */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" 
-             style={{ transform: "translateZ(20px)" }} />
-        
-        {/* CONNECTION BEAM */}
-        <div className={`
-            hidden md:block absolute top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-cyan-500 to-transparent
-            ${isLeft ? '-right-12 w-12 rotate-180' : '-left-12 w-12'}
-            opacity-50
-        `}>
-             {/* Pulse Packet */}
-             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 bg-white rounded-full animate-ping" />
-        </div>
+        {/* Dynamic Inner Glow mapped to theme color */}
+        <div 
+          className="absolute -inset-10 opacity-0 group-hover:opacity-15 transition-opacity duration-700 blur-3xl pointer-events-none" 
+          style={{ backgroundColor: item.color }} 
+        />
 
-        {/* CONTENT LAYER (Floating above card) */}
-        <div className="relative" style={{ transform: "translateZ(30px)" }}>
+        {/* Cyber Grid Background Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
+          style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} 
+        />
+
+        {/* Content Layer (Pushed forward in 3D Space) */}
+        <div className="relative z-10 flex flex-col h-full" style={{ transform: "translateZ(30px)" }}>
             
-            {/* Year Badge */}
-            <div className={`absolute -top-10 ${isLeft ? 'right-0' : 'left-0'} px-3 py-1 bg-black/50 border border-cyan-500 rounded text-cyan-400 font-mono text-xs shadow-[0_0_15px_rgba(34,211,238,0.2)]`}>
-                {item.year}
+            {/* Top Bar: Year & Tech Badges */}
+            <div className="flex justify-between items-start mb-8 gap-4 flex-wrap">
+                <span 
+                   className="px-5 py-2 rounded-full text-xs font-mono font-bold tracking-widest bg-slate-950 border border-white/10 text-white shadow-lg" 
+                   style={{ borderColor: `${item.color}50`, color: item.color }}
+                >
+                    {item.year}
+                </span>
+                
+                <div className="flex gap-2.5">
+                   {item.tech.map((Icon, idx) => (
+                       <div key={idx} className="w-9 h-9 rounded-full bg-slate-800/80 border border-white/10 flex items-center justify-center text-sm text-gray-400 group-hover:text-white transition-all duration-300 group-hover:-translate-y-1" style={{ transitionDelay: `${idx * 50}ms` }}>
+                          <Icon />
+                       </div>
+                   ))}
+                </div>
             </div>
 
-            <h4 className="text-2xl font-bold text-white mb-2 mt-2 group-hover:text-cyan-300 transition-colors">
-                <HackerText text={item.title} isHovered={isHovered} />
+            {/* Main Content */}
+            <h4 className="text-2xl md:text-3xl font-black text-white mb-3 tracking-wide transition-all group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+                <HackerText text={item.title} isHovered={isHovered} /> 
             </h4>
             
-            <p className="text-xs font-mono text-purple-400 mb-4 tracking-[0.2em] uppercase flex items-center gap-2">
-                <FaAtom className="animate-spin-slow" /> {item.role}
+            <p className="text-sm font-mono tracking-[0.2em] uppercase flex items-center gap-3 mb-6" style={{ color: item.color }}>
+                <FaAtom className="animate-spin-slow opacity-80 text-lg" /> {item.role}
             </p>
             
-            <p className="text-slate-400 text-sm leading-relaxed border-l-2 border-white/10 pl-4 group-hover:border-cyan-400/50 transition-colors">
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed border-l-2 pl-5 transition-colors duration-500" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
                {item.description}
             </p>
         </div>
 
-        {/* CORNER DECORS */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/20 group-hover:border-cyan-400 transition-colors" style={{ transform: "translateZ(10px)" }} />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/20 group-hover:border-cyan-400 transition-colors" style={{ transform: "translateZ(10px)" }} />
+        {/* Decorative Sci-Fi Brackets */}
+        <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-white/10 opacity-30 group-hover:opacity-100 group-hover:w-16 group-hover:h-16 transition-all duration-500 rounded-tl-3xl pointer-events-none" style={{ borderColor: item.color, transform: "translateZ(10px)" }} />
+        <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-white/10 opacity-30 group-hover:opacity-100 group-hover:w-16 group-hover:h-16 transition-all duration-500 rounded-br-3xl pointer-events-none" style={{ borderColor: item.color, transform: "translateZ(10px)" }} />
 
       </div>
     </div>
@@ -175,33 +184,49 @@ const MissionLog = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // SPINE ANIMATION
+      
+      // 1. GLOWING NEON LASER SPINE ANIMATION
       gsap.fromTo(lineRef.current, 
-        { height: "0%" },
+        { scaleY: 0 },
         { 
-          height: "100%", 
+          scaleY: 1, 
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 60%",
+            start: "top 50%",
             end: "bottom 80%",
             scrub: 1, 
           }
         }
       )
       
-      // CARD REVEAL
-      gsap.utils.toArray(".mission-row").forEach((el) => {
+      // 2. CINEMATIC 3D CARD ENTRANCES
+      gsap.utils.toArray(".mission-row").forEach((el, index) => {
+        const isLeft = index % 2 === 0;
+        
         gsap.fromTo(el,
-          { opacity: 0, y: 50 },
           { 
-            opacity: 1, y: 0, 
-            duration: 0.8, 
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%" }
+              opacity: 0, 
+              x: isLeft ? -100 : 100, 
+              rotationY: isLeft ? 15 : -15 
+          },
+          { 
+            opacity: 1, 
+            x: 0, 
+            rotationY: 0, 
+            duration: 1.2, 
+            ease: "expo.out",
+            scrollTrigger: { 
+                trigger: el, 
+                start: "top 80%",
+                // Plays when scrolling down, does not reverse so user can read smoothly, 
+                // but re-triggers if they scroll all the way back up
+                toggleActions: "play none none reverse" 
+            }
           }
         )
       })
+
     }, containerRef)
     return () => ctx.revert()
   }, [])
@@ -209,23 +234,28 @@ const MissionLog = () => {
   return (
     <div ref={containerRef} className="relative w-full max-w-6xl mx-auto mt-40 px-4 md:px-0">
       
-      {/* HEADER */}
-      <div className="text-center mb-28 relative z-10">
+      {/* HEADER SECTION */}
+      <div className="text-center mb-32 relative z-10">
          <div className="inline-block relative group">
-            <h3 className="text-4xl font-black font-orbitron text-white tracking-[0.3em] uppercase mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+            <h3 className="text-4xl md:text-6xl font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-white tracking-[0.2em] uppercase mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
                 My Journey
             </h3>
-            <div className="absolute -bottom-4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent group-hover:via-cyan-400 transition-all duration-500" />
+            <div className="absolute -bottom-4 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#22d3ee] scale-x-50 group-hover:scale-x-100 transition-transform duration-700" />
          </div>
+         <p className="text-slate-400 mt-6 font-mono text-sm max-w-xl mx-auto">Tracing the timeline of skills acquired, systems built, and technologies mastered in my developer career.</p>
       </div>
 
-      {/* CHRONO SPINE */}
-      <div className="absolute left-4 md:left-1/2 top-24 bottom-0 w-[4px] bg-slate-800 -translate-x-1/2 rounded-full z-0 overflow-hidden">
-         <div ref={lineRef} className="w-full bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-400 shadow-[0_0_20px_#22d3ee]" />
+      {/* GLOWING LASER SPINE CONTAINER */}
+      <div className="absolute left-4 md:left-1/2 top-48 bottom-0 w-[2px] bg-slate-900/50 -translate-x-1/2 z-0">
+         {/* The fill laser */}
+         <div 
+             ref={lineRef} 
+             className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-400 shadow-[0_0_20px_#22d3ee,0_0_40px_rgba(168,85,247,0.5)] origin-top will-change-transform" 
+         />
       </div>
 
       {/* LOG ENTRIES */}
-      <div className="flex flex-col gap-32 pb-20">
+      <div className="flex flex-col gap-28 md:gap-40 pb-20">
         {historyData.map((item, idx) => {
           const isLeft = idx % 2 === 0
           
@@ -235,39 +265,42 @@ const MissionLog = () => {
               className={`mission-row relative flex flex-col md:flex-row items-center gap-12 md:gap-0 ${!isLeft ? 'md:flex-row-reverse' : ''}`}
             >
               
-              {/* CARD SIDE */}
-              <div className={`w-full md:w-[45%] ${isLeft ? 'md:pr-12' : 'md:pl-12'} pl-12 md:pl-0`}>
+              {/* INTERACTIVE CARD SIDE */}
+              <div className={`w-full md:w-[45%] ${isLeft ? 'md:pr-16 md:text-right' : 'md:pl-16'} pl-12 md:pl-0`}>
                  <HoloCard item={item} isLeft={isLeft} />
               </div>
 
-              {/* REACTOR NODE (Center) */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-24 h-24 z-20 flex items-center justify-center">
+              {/* NEXT-LEVEL REACTOR NODE (Center) */}
+              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-20 h-20 md:w-28 md:h-28 z-20 flex items-center justify-center">
                  
-                 {/* 1. Orbiting Electron */}
-                 <div className="absolute w-full h-full animate-[spin_4s_linear_infinite]">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_cyan]" />
-                 </div>
+                 {/* Outer Core Ring */}
+                 <div className="absolute inset-0 bg-slate-950 rounded-full border border-white/10 shadow-2xl" />
 
-                 {/* 2. Reverse Ring */}
-                 <div className="absolute w-16 h-16 border border-purple-500/30 rounded-full animate-[spin_10s_linear_infinite_reverse]" />
-                 
-                 {/* 3. Static Hex Core */}
+                 {/* Rotating Dashed Ring (Radar effect) */}
                  <div 
-                    className="relative w-12 h-12 bg-slate-950 flex items-center justify-center z-10"
-                    style={{ 
-                        clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                        boxShadow: `inset 0 0 20px ${item.color}60`,
-                        border: `1px solid ${item.color}`
-                    }}
-                 >
-                    <div className="text-lg drop-shadow-[0_0_5px_white]" style={{ color: item.color }}>
-                        {item.icon}
-                    </div>
+                    className="absolute inset-[2px] rounded-full animate-[spin_8s_linear_infinite_reverse] border-2 border-dashed border-white/20" 
+                    style={{ borderColor: `${item.color}40` }}
+                 />
+
+                 {/* Inner Pulsing Core */}
+                 <div className="absolute inset-4 rounded-full bg-slate-900 border" style={{ borderColor: `${item.color}50`, boxShadow: `inset 0 0 20px ${item.color}30` }}>
+                    <div className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: item.color }} />
                  </div>
 
+                 {/* Center Holographic Icon */}
+                 <div className="relative z-10 text-xl md:text-3xl drop-shadow-[0_0_15px_currentColor]" style={{ color: item.color }}>
+                    {item.icon}
+                 </div>
+
+                 {/* Subtle glowing connection laser to the card */}
+                 <div 
+                    className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[1px] ${isLeft ? 'right-full w-16' : 'left-full w-16'}`} 
+                    style={{ background: `linear-gradient(to ${isLeft ? 'left' : 'right'}, ${item.color}, transparent)` }} 
+                 />
+                 
               </div>
 
-              {/* SPACER */}
+              {/* EMPTY SPACER FOR OPPOSITE SIDE (Maintains layout structure) */}
               <div className="hidden md:block w-[45%]" />
 
             </div>

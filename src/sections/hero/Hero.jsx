@@ -13,7 +13,7 @@ const Hero = ({ showAnimation }) => {
   const [text, setText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
   const toRotate = "Hi, I'm Amrit"
-  const [delta, setDelta] = useState(150)
+  const [delta, setDelta] = useState(110)
 
   // --- 1. TYPING LOGIC ---
   useEffect(() => {
@@ -80,7 +80,7 @@ const Hero = ({ showAnimation }) => {
             
             {/* TITLE */}
             <div className="relative inline-block mb-4">
-                <h1 className="font-cursive font-bold text-6xl md:text-9xl text-white tracking-wide py-4 select-none">
+                <h1 className="font-cursive font-bold text-6xl md:text-9xl text-white tracking-wide py-4 select-none whitespace-nowrap flex items-center flex-wrap md:flex-nowrap">
                     <span 
                       data-cursor="text-lg"
                       className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent pb-2"

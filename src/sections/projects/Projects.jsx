@@ -98,7 +98,7 @@ const Projects = () => {
                // Wrapper div handles sticky scrolling behavior
                <div 
                  key={project.id} 
-                 className="sticky z-10 transition-all duration-500 w-full shadow-[0_-20px_40px_rgba(0,0,0,0.6)] rounded-[3rem]"
+                 className="sticky z-10 transition-all duration-500 w-full shadow-[0_-20px_40px_rgba(0,0,0,0.6)] rounded-[3rem] will-change-transform"
                  style={{ top: `${15 + index * 2}vh` }} // Cards stack cleanly
                >
                  <ProjectCard 
