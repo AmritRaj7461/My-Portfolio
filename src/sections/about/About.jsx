@@ -46,9 +46,12 @@ const About = () => {
              <div className="h-1 w-12 bg-cyan-400 rounded-full shadow-[0_0_10px_cyan]" />
              <p className="font-poppins text-gray-400 text-sm tracking-widest uppercase">Discover the persona</p>
           </div>
-          <div className="mt-8 flex items-center gap-6">
-            <a href="/Amrit's Specialized CV.pdf" download className="px-6 py-3 border border-cyan-500/50 text-cyan-400 rounded-full hover:bg-cyan-500/10 transition-colors flex items-center gap-2 font-bold uppercase tracking-wider text-sm shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.4)]">
-              <FaDownload /> Download Resume
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
+            <a href="/Amrit's Specialized CV.pdf" download className="px-6 py-3 border border-cyan-500/50 text-cyan-400 rounded-full hover:bg-cyan-500/10 transition-colors flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm shadow-[0_0_15px_rgba(34,211,238,0.2)] hover:shadow-[0_0_25px_rgba(34,211,238,0.4)] w-full sm:w-auto">
+              <FaDownload /> Specialized CS CV
+            </a>
+            <a href="/Amrit's CV.pdf" download className="px-6 py-3 border border-indigo-500/50 text-indigo-400 rounded-full hover:bg-indigo-500/10 transition-colors flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm shadow-[0_0_15px_rgba(99,102,241,0.2)] hover:shadow-[0_0_25px_rgba(99,102,241,0.4)] w-full sm:w-auto">
+              <FaDownload /> General CV
             </a>
           </div>
         </div>
